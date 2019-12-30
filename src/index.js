@@ -1,3 +1,6 @@
-import { writeToScreen } from './text'
+import { changeH1 } from './text'
 
-writeToScreen();
+// Edit here
+changeH1('See it hot reloads');
+
+if (module && module.hot) module.hot.accept()

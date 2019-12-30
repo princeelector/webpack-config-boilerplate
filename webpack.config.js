@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 /**
  * [hash]
@@ -12,9 +13,9 @@ const path = require('path');
 
 module.exports = {
     // this is actually the configuration webpack uses
-    mode: 'development',
+    mode: 'development', // use production when deploying
     entry: {
-        main: './src/index.js'
+        main:  './src/index.js'
     }, // webpack already looks for entry point in index.js by default
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -22,7 +23,10 @@ module.exports = {
         publicPath: '/assets/'
     },
     devServer: {
-        port: 1234,
-        contentBase: path.join(__dirname, 'dist')
-    }
+        port: 3001,
+        contentBase: path.join(__dirname, 'dist'),
+        writeToDisk: false, // already set to false by default
+        hot: true
+    },
+    plugins: [new webpack.HotModuleReplacementPlugin()]
 }
